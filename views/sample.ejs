@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="stylesheets/owl/owl.carousel.min.css" />
+    <link rel="stylesheet" href="stylesheets/owl/owl.theme.default.min.css" />
+  </head>
+  <body>
+    <div class="container-fluid mt-4">
+      <div class="owl-carousel owl-theme owl-loaded">
+        <h4>Animals</h4>
+        <div class="owl-stage-outer">
+          <div class="owl-stage">
+            <%Animals.forEach(function(category){%>
+            <div class="owl-item mx-1">
+              <div class="card mx-2">
+                <a href="animal/<%=category._id%>"
+                  ><img
+                    src="<%=category.thumb%>"
+                    alt="<%=category.name%>"
+                    class="card-img-top"
+                /></a>
+                <div class="card-body">
+                  <h5 class="text-center card-title"><%=category.name%></h5>
+                </div>
+              </div>
+            </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+      <div class="owl-carousel owl-theme owl-loaded">
+        <h4>Foods</h4>
+        <div class="owl-stage-outer">
+          <div class="owl-stage">
+            <%Foods.forEach(function(category){%>
+            <div class="owl-item mx-1">
+              <div class="card mx-2">
+                <a href="food/<%=category._id%>">
+                  <img
+                    src="<%=category.thumb%>"
+                    alt="<%=category.name%>"
+                    class="card-img-top"
+                /></a>
+                <div class="card-body">
+                  <h5 class="text-center card-title"><%=category.name%></h5>
+                </div>
+              </div>
+            </div>
+            <%})%>
+          </div>
+        </div>
+      </div>
+      <div id="scroll"></div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="stylesheets/owl/owl.carousel.min.js"></script>
+    <script>
+      var owl = $(".owl-carousel");
+      owl.owlCarousel({
+        loop: true,
+        nav: true,
+        dots: false,
+        margin: 10,
+        responsive: {
+          0: {
+            items: 2
+          },
+          600: {
+            items: 3
+          },
+          960: {
+            items: 4
+          },
+          1200: {
+            items: 5
+          }
+        }
+      });
+      $(document).ready(function() {
+        // console.log(furniture);
+        var cats = ["furniture", "nature", "technology", "transport"];
+        // console.log(cats);
+        var counter = 0;
+        $(window).on("wheel mousewheel", function(e) {
+          if (counter < cats.length) {
+            if (
+              $(window).scrollTop() >=
+              $(document).height() - $(window).height()
+            ) {
+              for (let i = 0; i < cats.length; i++) {
+                counter++;
+                $.ajax({
+                  url: "/furniture",
+                  type: "GET",
+                  success: data => {
+                    console.log(data);
+                    $("#sample").html(data);
+                  }
+                });
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

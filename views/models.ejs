@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3D Scenes</title>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+  </head>
+  <body>
+    <a-scene background="color:whitesmoke">
+      <a-assets>
+        <a-asset-item id="obj" src="<%=models.obj%>"></a-asset-item>
+        <a-asset-item id="mtl" src="<%=models.mtl%>"></a-asset-item>
+      </a-assets>
+      <a-camera
+        position="<%=models.camera.position%>"
+        rotation="<%=models.camera.rotation%>"
+      >
+      </a-camera>
+      <a-entity
+        position="<%=models.entity.position%>"
+        rotation="<%=models.entity.rotation%>"
+        scale="<%=models.entity.scale%>"
+        obj-model="obj:#obj;mtl:#mtl"
+      >
+        <a-animation
+          attribute="rotation"
+          dur="4000"
+          from="<%=models.entity.rotation%>"
+          to="0 360 0"
+          repeat="indefinite"
+        ></a-animation>
+      </a-entity>
+      <!-- <a-camera
+        position="-4.55158 -0.09988 4.14219"
+        camera=""
+        look-controls=""
+        wasd-controls=""
+        data-aframe-inspector-original-camera=""
+      >
+      </a-camera>
+      <a-entity
+        rotation="-1.079452486026471 45.11355087301076 -1.685068875479751"
+        scale="1.4 1.5 1.5"
+        obj-model="obj:#obj;mtl:#mtl"
+        position="-4.43018 0.00861 -0.12068"
+      ></a-entity> -->
+    </a-scene>
+    <script></script>
+  </body>
+</html>

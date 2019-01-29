@@ -1,0 +1,22 @@
+<div class="owl-carousel owl-theme owl-loaded">
+  <h4><%=results[0].category%></h4>
+  <div class="owl-stage-outer">
+    <div class="owl-stage">
+      <%results.forEach(function(result){%>
+      <div class="owl-item mx-1">
+        <div class="card mx-2">
+          <a href="<%=result.category%>/<%=result._id%>"
+            ><img
+              src="<%=result.thumb%>"
+              alt="<%=result.name%>"
+              class="card-img-top"
+          /></a>
+          <div class="card-body">
+            <h5 class="text-center card-title"><%=result.name%></h5>
+          </div>
+        </div>
+      </div>
+      <%})%>
+    </div>
+  </div>
+</div>
