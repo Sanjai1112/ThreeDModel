@@ -202,7 +202,7 @@ app.get("/Transports/:id", (req, res) => {
     else res.render("models", { models: result });
   });
 });
-const port = 3001;
+const port = 3001 || process.env.port;
 
 app.listen(port, () => {
   console.log(`Server Started at ${port}`);
