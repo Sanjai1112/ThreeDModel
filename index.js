@@ -11,14 +11,11 @@ const mongoose = require("mongoose");
 const async = require("async");
 const ejs = require("ejs");
 const fs = require("fs");
-// mongoose.connect(
-//   "mongodb://sanjai:sanjai@localhost/ThreeDmodels?authSource=admin",
-//   { useNewUrlParser: true }
-// );
 mongoose.connect(
-  "mongodb://model:Sanjai1@ds257314.mlab.com:57314/3dmodels",
+  "mongodb://[your-local-host]/[Db-name]",
   { useNewUrlParser: true }
 );
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -112,7 +109,7 @@ app.get("/furnitures", (req, res) => {
       res.redirect("/");
     } else {
       // console.log(JSON.stringify(result));
-      // console.log(result);
+      console.log(results);
       const compile = ejs.compile(
         fs.readFileSync(__dirname + "/views/partials/models.ejs", "utf8")
       );
@@ -202,8 +199,8 @@ app.get("/Transports/:id", (req, res) => {
     else res.render("models", { models: result });
   });
 });
-// const port = 3001 || process.env.PORT;
-app.listen(process.env.PORT, process.env.IP);
-// app.listen(port, () => {
-//   console.log(`Server Started at ${port}`);
-// });
+const port = 3001 || process.env.PORT;
+// app.listen(process.env.PORT, process.env.IP);
+app.listen(port, () => {
+  console.log(`Server Started at ${port}`);
+});
